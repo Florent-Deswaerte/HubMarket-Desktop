@@ -1,5 +1,4 @@
-﻿
-namespace HubMarket_Desktop
+﻿namespace HubMarket_Desktop
 {
     partial class MainForm
     {
@@ -29,57 +28,83 @@ namespace HubMarket_Desktop
         /// </summary>
         private void InitializeComponent()
         {
-            this.button1 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
+            this.debugLabel = new MaterialSkin.Controls.MaterialLabel();
+            this.connectButton = new MaterialSkin.Controls.MaterialRaisedButton();
+            this.usernameTextBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
+            this.passwordTextBox = new MaterialSkin.Controls.MaterialSingleLineTextField();
             this.SuspendLayout();
             // 
-            // button1
+            // debugLabel
             // 
-            this.button1.Location = new System.Drawing.Point(357, 226);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(94, 29);
-            this.button1.TabIndex = 0;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.debugLabel.AutoSize = true;
+            this.debugLabel.Depth = 0;
+            this.debugLabel.Font = new System.Drawing.Font("Roboto", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.debugLabel.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(222)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.debugLabel.Location = new System.Drawing.Point(346, 327);
+            this.debugLabel.MouseState = MaterialSkin.MouseState.HOVER;
+            this.debugLabel.Name = "debugLabel";
+            this.debugLabel.Size = new System.Drawing.Size(0, 24);
+            this.debugLabel.TabIndex = 4;
             // 
-            // textBox1
+            // connectButton
             // 
-            this.textBox1.Location = new System.Drawing.Point(344, 92);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.PlaceholderText = "Email";
-            this.textBox1.Size = new System.Drawing.Size(125, 27);
-            this.textBox1.TabIndex = 1;
+            this.connectButton.AutoSize = true;
+            this.connectButton.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
+            this.connectButton.Depth = 0;
+            this.connectButton.Icon = null;
+            this.connectButton.Location = new System.Drawing.Point(346, 263);
+            this.connectButton.MouseState = MaterialSkin.MouseState.HOVER;
+            this.connectButton.Name = "connectButton";
+            this.connectButton.Primary = true;
+            this.connectButton.Size = new System.Drawing.Size(146, 36);
+            this.connectButton.TabIndex = 6;
+            this.connectButton.Text = "Se Connecter";
+            this.connectButton.UseVisualStyleBackColor = true;
+            this.connectButton.Click += new System.EventHandler(this.Connexion);
             // 
-            // textBox2
+            // usernameTextBox
             // 
-            this.textBox2.Location = new System.Drawing.Point(344, 162);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.PlaceholderText = "Mot de passe";
-            this.textBox2.Size = new System.Drawing.Size(125, 27);
-            this.textBox2.TabIndex = 2;
+            this.usernameTextBox.Depth = 0;
+            this.usernameTextBox.Hint = "Email";
+            this.usernameTextBox.Location = new System.Drawing.Point(347, 139);
+            this.usernameTextBox.MaxLength = 32767;
+            this.usernameTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.usernameTextBox.Name = "usernameTextBox";
+            this.usernameTextBox.PasswordChar = '\0';
+            this.usernameTextBox.SelectedText = "";
+            this.usernameTextBox.SelectionLength = 0;
+            this.usernameTextBox.SelectionStart = 0;
+            this.usernameTextBox.Size = new System.Drawing.Size(145, 28);
+            this.usernameTextBox.TabIndex = 7;
+            this.usernameTextBox.TabStop = false;
+            this.usernameTextBox.UseSystemPasswordChar = false;
             // 
-            // label1
+            // passwordTextBox
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(357, 292);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 20);
-            this.label1.TabIndex = 3;
-            this.label1.Text = "label1";
+            this.passwordTextBox.Depth = 0;
+            this.passwordTextBox.Hint = "Mot de passe";
+            this.passwordTextBox.Location = new System.Drawing.Point(347, 196);
+            this.passwordTextBox.MaxLength = 32767;
+            this.passwordTextBox.MouseState = MaterialSkin.MouseState.HOVER;
+            this.passwordTextBox.Name = "passwordTextBox";
+            this.passwordTextBox.PasswordChar = '•';
+            this.passwordTextBox.SelectedText = "";
+            this.passwordTextBox.SelectionLength = 0;
+            this.passwordTextBox.SelectionStart = 0;
+            this.passwordTextBox.Size = new System.Drawing.Size(145, 28);
+            this.passwordTextBox.TabIndex = 8;
+            this.passwordTextBox.TabStop = false;
+            this.passwordTextBox.UseSystemPasswordChar = false;
             // 
             // MainForm
             // 
-            this.AcceptButton = this.button1;
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.label1);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.passwordTextBox);
+            this.Controls.Add(this.usernameTextBox);
+            this.Controls.Add(this.connectButton);
+            this.Controls.Add(this.debugLabel);
             this.Name = "MainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -88,11 +113,10 @@ namespace HubMarket_Desktop
         }
 
         #endregion
-
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Label label1;
+        private MaterialSkin.Controls.MaterialLabel debugLabel;
+        private MaterialSkin.Controls.MaterialRaisedButton connectButton;
+        private MaterialSkin.Controls.MaterialSingleLineTextField usernameTextBox;
+        private MaterialSkin.Controls.MaterialSingleLineTextField passwordTextBox;
     }
 }
 
