@@ -47,7 +47,7 @@ namespace HubMarket_Desktop
 
             try
             {
-                Request request = new Request("http://s4-8014.nuage-peda.fr/Hubmarket/public/api/login");
+                Request request = new Request("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/login");
                 string jsonString = Credentials.SerializeCredentials(credentials);
                 string response = request.Post(jsonString, "application/json", "POST");
                 JwtToken jwtToken = JsonConvert.DeserializeObject<JwtToken>(response);
@@ -57,13 +57,14 @@ namespace HubMarket_Desktop
                 {
                     Singleton.GetInstance().SetUser(user);
                     debugLabel.Text = request.GetResponse().StatusCode.ToString();
+                    Form BaseForm = new BaseForm();
+                    BaseForm.ShowDialog();
                 }
             }
             catch (Exception ex)
             {
                 debugLabel.Text = ex.Message;
             }
-            
         }
     }
 }
