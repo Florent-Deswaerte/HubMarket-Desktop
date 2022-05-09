@@ -20,5 +20,31 @@ namespace HubMarket_Desktop
 
             CenterToScreen();
         }
+
+        private void btnEnvoyer_Click(object sender, EventArgs e)
+        {
+            /*var produit = new Produit
+            {
+                fournisseur = fournisseurTextBox.Text,
+                nom = nomProduitTextBox.Text,
+                categorie = catProduitTextBox.Text,
+                qty = qtyProduitTextBox.Text,
+                prix = prixProduitTextBox.Text,
+                description = descriptionProduitTextBox.Text
+            };
+
+            try
+            {
+                Request request = new Request("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits");
+                string jsonString = Produit.SerializeProduit(produit);
+                string response = request.Post(jsonString, "application/json", "POST");
+                MessageBox.Show(response);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            */
+        }
     }
 }
