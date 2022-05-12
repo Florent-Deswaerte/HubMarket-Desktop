@@ -28,162 +28,319 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.label1 = new System.Windows.Forms.Label();
-            this.btnEnvoyer = new System.Windows.Forms.Button();
-            this.creaProduitBox = new System.Windows.Forms.GroupBox();
-            this.prixProduitTextBox = new System.Windows.Forms.TextBox();
-            this.qtyProduitTextBox = new System.Windows.Forms.TextBox();
-            this.catProduitTextBox = new System.Windows.Forms.TextBox();
-            this.nomProduitTextBox = new System.Windows.Forms.TextBox();
-            this.fournisseurTextBox = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.descriptionProduitTextBox = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.creaProduitBox.SuspendLayout();
+            System.Windows.Forms.TextBox prixProduitModifTextBox;
+            this.fournisseurCreationLabel = new System.Windows.Forms.Label();
+            this.btnCreation = new System.Windows.Forms.Button();
+            this.creationProduitGroupBox = new System.Windows.Forms.GroupBox();
+            this.descProduitCreationTextBox = new System.Windows.Forms.TextBox();
+            this.descProduitCreationLabel = new System.Windows.Forms.Label();
+            this.prixProduitCreationTextBox = new System.Windows.Forms.TextBox();
+            this.qtyProduitCreationTextBox = new System.Windows.Forms.TextBox();
+            this.catProduitCreationTextBox = new System.Windows.Forms.TextBox();
+            this.nomProduitCreationTextBox = new System.Windows.Forms.TextBox();
+            this.fournisseurCreationTextBox = new System.Windows.Forms.TextBox();
+            this.prixProduitCreationLabel = new System.Windows.Forms.Label();
+            this.qtyProduitCreationLabel = new System.Windows.Forms.Label();
+            this.catProduitCreationLabel = new System.Windows.Forms.Label();
+            this.nomProduitCreationLabel = new System.Windows.Forms.Label();
+            this.modificationProduitGroupBox = new System.Windows.Forms.GroupBox();
+            this.descProduitModifTextBox = new System.Windows.Forms.TextBox();
+            this.descProduitModifLabel = new System.Windows.Forms.Label();
+            this.qtyProduitModifTextBox = new System.Windows.Forms.TextBox();
+            this.catProduitModifTextBox = new System.Windows.Forms.TextBox();
+            this.nomProduitModifTextBox = new System.Windows.Forms.TextBox();
+            this.fournisseurModifTextBox = new System.Windows.Forms.TextBox();
+            this.prixProduitModifLabel = new System.Windows.Forms.Label();
+            this.qtyProduitModifLabel = new System.Windows.Forms.Label();
+            this.catProduitModifLabel = new System.Windows.Forms.Label();
+            this.nomProduitModifLabel = new System.Windows.Forms.Label();
+            this.fournisseurModifLabel = new System.Windows.Forms.Label();
+            this.btnModification = new System.Windows.Forms.Button();
+            this.searchTextBox = new System.Windows.Forms.TextBox();
+            prixProduitModifTextBox = new System.Windows.Forms.TextBox();
+            this.creationProduitGroupBox.SuspendLayout();
+            this.modificationProduitGroupBox.SuspendLayout();
             this.SuspendLayout();
             // 
-            // label1
+            // fournisseurCreationLabel
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(5, 35);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 15);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Nom Fournisseur";
+            this.fournisseurCreationLabel.AutoSize = true;
+            this.fournisseurCreationLabel.Location = new System.Drawing.Point(5, 35);
+            this.fournisseurCreationLabel.Name = "fournisseurCreationLabel";
+            this.fournisseurCreationLabel.Size = new System.Drawing.Size(98, 15);
+            this.fournisseurCreationLabel.TabIndex = 0;
+            this.fournisseurCreationLabel.Text = "Nom Fournisseur";
             // 
-            // btnEnvoyer
+            // btnCreation
             // 
-            this.btnEnvoyer.Location = new System.Drawing.Point(7, 335);
-            this.btnEnvoyer.Name = "btnEnvoyer";
-            this.btnEnvoyer.Size = new System.Drawing.Size(75, 23);
-            this.btnEnvoyer.TabIndex = 1;
-            this.btnEnvoyer.Text = "Créer";
-            this.btnEnvoyer.UseVisualStyleBackColor = true;
-            this.btnEnvoyer.Click += new System.EventHandler(this.btnEnvoyer_Click);
+            this.btnCreation.Location = new System.Drawing.Point(7, 335);
+            this.btnCreation.Name = "btnCreation";
+            this.btnCreation.Size = new System.Drawing.Size(75, 23);
+            this.btnCreation.TabIndex = 1;
+            this.btnCreation.Text = "Créer";
+            this.btnCreation.UseVisualStyleBackColor = true;
+            this.btnCreation.Click += new System.EventHandler(this.btnCreation_Click);
             // 
-            // creaProduitBox
+            // creationProduitGroupBox
             // 
-            this.creaProduitBox.Controls.Add(this.descriptionProduitTextBox);
-            this.creaProduitBox.Controls.Add(this.label6);
-            this.creaProduitBox.Controls.Add(this.prixProduitTextBox);
-            this.creaProduitBox.Controls.Add(this.qtyProduitTextBox);
-            this.creaProduitBox.Controls.Add(this.catProduitTextBox);
-            this.creaProduitBox.Controls.Add(this.nomProduitTextBox);
-            this.creaProduitBox.Controls.Add(this.fournisseurTextBox);
-            this.creaProduitBox.Controls.Add(this.label5);
-            this.creaProduitBox.Controls.Add(this.label4);
-            this.creaProduitBox.Controls.Add(this.label3);
-            this.creaProduitBox.Controls.Add(this.label2);
-            this.creaProduitBox.Controls.Add(this.label1);
-            this.creaProduitBox.Controls.Add(this.btnEnvoyer);
-            this.creaProduitBox.Location = new System.Drawing.Point(477, 74);
-            this.creaProduitBox.Name = "creaProduitBox";
-            this.creaProduitBox.Size = new System.Drawing.Size(311, 364);
-            this.creaProduitBox.TabIndex = 2;
-            this.creaProduitBox.TabStop = false;
-            this.creaProduitBox.Text = "Création Produit";
+            this.creationProduitGroupBox.Controls.Add(this.descProduitCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.descProduitCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.prixProduitCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.qtyProduitCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.catProduitCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.nomProduitCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.fournisseurCreationTextBox);
+            this.creationProduitGroupBox.Controls.Add(this.prixProduitCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.qtyProduitCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.catProduitCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.nomProduitCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.fournisseurCreationLabel);
+            this.creationProduitGroupBox.Controls.Add(this.btnCreation);
+            this.creationProduitGroupBox.Location = new System.Drawing.Point(477, 74);
+            this.creationProduitGroupBox.Name = "creationProduitGroupBox";
+            this.creationProduitGroupBox.Size = new System.Drawing.Size(311, 364);
+            this.creationProduitGroupBox.TabIndex = 2;
+            this.creationProduitGroupBox.TabStop = false;
+            this.creationProduitGroupBox.Text = "Création Produit";
             // 
-            // prixProduitTextBox
+            // descProduitCreationTextBox
             // 
-            this.prixProduitTextBox.Location = new System.Drawing.Point(5, 229);
-            this.prixProduitTextBox.Name = "prixProduitTextBox";
-            this.prixProduitTextBox.Size = new System.Drawing.Size(100, 23);
-            this.prixProduitTextBox.TabIndex = 10;
+            this.descProduitCreationTextBox.Location = new System.Drawing.Point(7, 273);
+            this.descProduitCreationTextBox.Name = "descProduitCreationTextBox";
+            this.descProduitCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.descProduitCreationTextBox.TabIndex = 12;
             // 
-            // qtyProduitTextBox
+            // descProduitCreationLabel
             // 
-            this.qtyProduitTextBox.Location = new System.Drawing.Point(6, 185);
-            this.qtyProduitTextBox.Name = "qtyProduitTextBox";
-            this.qtyProduitTextBox.Size = new System.Drawing.Size(100, 23);
-            this.qtyProduitTextBox.TabIndex = 9;
+            this.descProduitCreationLabel.AutoSize = true;
+            this.descProduitCreationLabel.Location = new System.Drawing.Point(7, 255);
+            this.descProduitCreationLabel.Name = "descProduitCreationLabel";
+            this.descProduitCreationLabel.Size = new System.Drawing.Size(109, 15);
+            this.descProduitCreationLabel.TabIndex = 11;
+            this.descProduitCreationLabel.Text = "Description Produit";
             // 
-            // catProduitTextBox
+            // prixProduitCreationTextBox
             // 
-            this.catProduitTextBox.Location = new System.Drawing.Point(5, 141);
-            this.catProduitTextBox.Name = "catProduitTextBox";
-            this.catProduitTextBox.Size = new System.Drawing.Size(100, 23);
-            this.catProduitTextBox.TabIndex = 8;
+            this.prixProduitCreationTextBox.Location = new System.Drawing.Point(5, 229);
+            this.prixProduitCreationTextBox.Name = "prixProduitCreationTextBox";
+            this.prixProduitCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.prixProduitCreationTextBox.TabIndex = 10;
             // 
-            // nomProduitTextBox
+            // qtyProduitCreationTextBox
             // 
-            this.nomProduitTextBox.Location = new System.Drawing.Point(6, 97);
-            this.nomProduitTextBox.Name = "nomProduitTextBox";
-            this.nomProduitTextBox.Size = new System.Drawing.Size(100, 23);
-            this.nomProduitTextBox.TabIndex = 7;
+            this.qtyProduitCreationTextBox.Location = new System.Drawing.Point(6, 185);
+            this.qtyProduitCreationTextBox.Name = "qtyProduitCreationTextBox";
+            this.qtyProduitCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.qtyProduitCreationTextBox.TabIndex = 9;
             // 
-            // fournisseurTextBox
+            // catProduitCreationTextBox
             // 
-            this.fournisseurTextBox.Location = new System.Drawing.Point(5, 53);
-            this.fournisseurTextBox.Name = "fournisseurTextBox";
-            this.fournisseurTextBox.Size = new System.Drawing.Size(100, 23);
-            this.fournisseurTextBox.TabIndex = 6;
+            this.catProduitCreationTextBox.Location = new System.Drawing.Point(5, 141);
+            this.catProduitCreationTextBox.Name = "catProduitCreationTextBox";
+            this.catProduitCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.catProduitCreationTextBox.TabIndex = 8;
             // 
-            // label5
+            // nomProduitCreationTextBox
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(5, 211);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(69, 15);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Prix Produit";
+            this.nomProduitCreationTextBox.Location = new System.Drawing.Point(6, 97);
+            this.nomProduitCreationTextBox.Name = "nomProduitCreationTextBox";
+            this.nomProduitCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.nomProduitCreationTextBox.TabIndex = 7;
             // 
-            // label4
+            // fournisseurCreationTextBox
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(0, 167);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(101, 15);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "Quantitée Produit";
+            this.fournisseurCreationTextBox.Location = new System.Drawing.Point(5, 53);
+            this.fournisseurCreationTextBox.Name = "fournisseurCreationTextBox";
+            this.fournisseurCreationTextBox.Size = new System.Drawing.Size(100, 23);
+            this.fournisseurCreationTextBox.TabIndex = 6;
             // 
-            // label3
+            // prixProduitCreationLabel
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 123);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 15);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Catégorie Produit";
+            this.prixProduitCreationLabel.AutoSize = true;
+            this.prixProduitCreationLabel.Location = new System.Drawing.Point(5, 211);
+            this.prixProduitCreationLabel.Name = "prixProduitCreationLabel";
+            this.prixProduitCreationLabel.Size = new System.Drawing.Size(69, 15);
+            this.prixProduitCreationLabel.TabIndex = 5;
+            this.prixProduitCreationLabel.Text = "Prix Produit";
             // 
-            // label2
+            // qtyProduitCreationLabel
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 79);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 15);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Nom Produit";
+            this.qtyProduitCreationLabel.AutoSize = true;
+            this.qtyProduitCreationLabel.Location = new System.Drawing.Point(0, 167);
+            this.qtyProduitCreationLabel.Name = "qtyProduitCreationLabel";
+            this.qtyProduitCreationLabel.Size = new System.Drawing.Size(95, 15);
+            this.qtyProduitCreationLabel.TabIndex = 4;
+            this.qtyProduitCreationLabel.Text = "Quantité Produit";
             // 
-            // descriptionProduitTextBox
+            // catProduitCreationLabel
             // 
-            this.descriptionProduitTextBox.Location = new System.Drawing.Point(7, 273);
-            this.descriptionProduitTextBox.Name = "descriptionProduitTextBox";
-            this.descriptionProduitTextBox.Size = new System.Drawing.Size(100, 23);
-            this.descriptionProduitTextBox.TabIndex = 12;
+            this.catProduitCreationLabel.AutoSize = true;
+            this.catProduitCreationLabel.Location = new System.Drawing.Point(6, 123);
+            this.catProduitCreationLabel.Name = "catProduitCreationLabel";
+            this.catProduitCreationLabel.Size = new System.Drawing.Size(100, 15);
+            this.catProduitCreationLabel.TabIndex = 3;
+            this.catProduitCreationLabel.Text = "Catégorie Produit";
             // 
-            // label6
+            // nomProduitCreationLabel
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(7, 255);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(109, 15);
-            this.label6.TabIndex = 11;
-            this.label6.Text = "Description Produit";
+            this.nomProduitCreationLabel.AutoSize = true;
+            this.nomProduitCreationLabel.Location = new System.Drawing.Point(6, 79);
+            this.nomProduitCreationLabel.Name = "nomProduitCreationLabel";
+            this.nomProduitCreationLabel.Size = new System.Drawing.Size(76, 15);
+            this.nomProduitCreationLabel.TabIndex = 2;
+            this.nomProduitCreationLabel.Text = "Nom Produit";
+            // 
+            // modificationProduitGroupBox
+            // 
+            this.modificationProduitGroupBox.Controls.Add(this.descProduitModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.descProduitModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(prixProduitModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.qtyProduitModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.catProduitModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.nomProduitModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.fournisseurModifTextBox);
+            this.modificationProduitGroupBox.Controls.Add(this.prixProduitModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(this.qtyProduitModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(this.catProduitModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(this.nomProduitModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(this.fournisseurModifLabel);
+            this.modificationProduitGroupBox.Controls.Add(this.btnModification);
+            this.modificationProduitGroupBox.Location = new System.Drawing.Point(160, 74);
+            this.modificationProduitGroupBox.Name = "modificationProduitGroupBox";
+            this.modificationProduitGroupBox.Size = new System.Drawing.Size(311, 364);
+            this.modificationProduitGroupBox.TabIndex = 3;
+            this.modificationProduitGroupBox.TabStop = false;
+            this.modificationProduitGroupBox.Text = "Modification Produit";
+            // 
+            // descProduitModifTextBox
+            // 
+            this.descProduitModifTextBox.Location = new System.Drawing.Point(7, 273);
+            this.descProduitModifTextBox.Name = "descProduitModifTextBox";
+            this.descProduitModifTextBox.Size = new System.Drawing.Size(100, 23);
+            this.descProduitModifTextBox.TabIndex = 12;
+            // 
+            // descProduitModifLabel
+            // 
+            this.descProduitModifLabel.AutoSize = true;
+            this.descProduitModifLabel.Location = new System.Drawing.Point(7, 255);
+            this.descProduitModifLabel.Name = "descProduitModifLabel";
+            this.descProduitModifLabel.Size = new System.Drawing.Size(109, 15);
+            this.descProduitModifLabel.TabIndex = 11;
+            this.descProduitModifLabel.Text = "Description Produit";
+            // 
+            // prixProduitModifTextBox
+            // 
+            prixProduitModifTextBox.Location = new System.Drawing.Point(5, 229);
+            prixProduitModifTextBox.Name = "prixProduitModifTextBox";
+            prixProduitModifTextBox.Size = new System.Drawing.Size(100, 23);
+            prixProduitModifTextBox.TabIndex = 10;
+            // 
+            // qtyProduitModifTextBox
+            // 
+            this.qtyProduitModifTextBox.Location = new System.Drawing.Point(6, 185);
+            this.qtyProduitModifTextBox.Name = "qtyProduitModifTextBox";
+            this.qtyProduitModifTextBox.Size = new System.Drawing.Size(100, 23);
+            this.qtyProduitModifTextBox.TabIndex = 9;
+            // 
+            // catProduitModifTextBox
+            // 
+            this.catProduitModifTextBox.Location = new System.Drawing.Point(5, 141);
+            this.catProduitModifTextBox.Name = "catProduitModifTextBox";
+            this.catProduitModifTextBox.Size = new System.Drawing.Size(100, 23);
+            this.catProduitModifTextBox.TabIndex = 8;
+            // 
+            // nomProduitModifTextBox
+            // 
+            this.nomProduitModifTextBox.Location = new System.Drawing.Point(6, 97);
+            this.nomProduitModifTextBox.Name = "nomProduitModifTextBox";
+            this.nomProduitModifTextBox.Size = new System.Drawing.Size(100, 23);
+            this.nomProduitModifTextBox.TabIndex = 7;
+            // 
+            // fournisseurModifTextBox
+            // 
+            this.fournisseurModifTextBox.Location = new System.Drawing.Point(5, 53);
+            this.fournisseurModifTextBox.Name = "fournisseurModifTextBox";
+            this.fournisseurModifTextBox.Size = new System.Drawing.Size(100, 23);
+            this.fournisseurModifTextBox.TabIndex = 6;
+            // 
+            // prixProduitModifLabel
+            // 
+            this.prixProduitModifLabel.AutoSize = true;
+            this.prixProduitModifLabel.Location = new System.Drawing.Point(5, 211);
+            this.prixProduitModifLabel.Name = "prixProduitModifLabel";
+            this.prixProduitModifLabel.Size = new System.Drawing.Size(69, 15);
+            this.prixProduitModifLabel.TabIndex = 5;
+            this.prixProduitModifLabel.Text = "Prix Produit";
+            // 
+            // qtyProduitModifLabel
+            // 
+            this.qtyProduitModifLabel.AutoSize = true;
+            this.qtyProduitModifLabel.Location = new System.Drawing.Point(6, 167);
+            this.qtyProduitModifLabel.Name = "qtyProduitModifLabel";
+            this.qtyProduitModifLabel.Size = new System.Drawing.Size(95, 15);
+            this.qtyProduitModifLabel.TabIndex = 4;
+            this.qtyProduitModifLabel.Text = "Quantité Produit";
+            // 
+            // catProduitModifLabel
+            // 
+            this.catProduitModifLabel.AutoSize = true;
+            this.catProduitModifLabel.Location = new System.Drawing.Point(6, 123);
+            this.catProduitModifLabel.Name = "catProduitModifLabel";
+            this.catProduitModifLabel.Size = new System.Drawing.Size(100, 15);
+            this.catProduitModifLabel.TabIndex = 3;
+            this.catProduitModifLabel.Text = "Catégorie Produit";
+            // 
+            // nomProduitModifLabel
+            // 
+            this.nomProduitModifLabel.AutoSize = true;
+            this.nomProduitModifLabel.Location = new System.Drawing.Point(6, 79);
+            this.nomProduitModifLabel.Name = "nomProduitModifLabel";
+            this.nomProduitModifLabel.Size = new System.Drawing.Size(76, 15);
+            this.nomProduitModifLabel.TabIndex = 2;
+            this.nomProduitModifLabel.Text = "Nom Produit";
+            // 
+            // fournisseurModifLabel
+            // 
+            this.fournisseurModifLabel.AutoSize = true;
+            this.fournisseurModifLabel.Location = new System.Drawing.Point(5, 35);
+            this.fournisseurModifLabel.Name = "fournisseurModifLabel";
+            this.fournisseurModifLabel.Size = new System.Drawing.Size(98, 15);
+            this.fournisseurModifLabel.TabIndex = 0;
+            this.fournisseurModifLabel.Text = "Nom Fournisseur";
+            // 
+            // btnModification
+            // 
+            this.btnModification.Location = new System.Drawing.Point(7, 335);
+            this.btnModification.Name = "btnModification";
+            this.btnModification.Size = new System.Drawing.Size(75, 23);
+            this.btnModification.TabIndex = 1;
+            this.btnModification.Text = "Modifier";
+            this.btnModification.UseVisualStyleBackColor = true;
+            // 
+            // searchTextBox
+            // 
+            this.searchTextBox.Location = new System.Drawing.Point(688, 32);
+            this.searchTextBox.Name = "searchTextBox";
+            this.searchTextBox.PlaceholderText = "Rechercher";
+            this.searchTextBox.Size = new System.Drawing.Size(100, 23);
+            this.searchTextBox.TabIndex = 13;
             // 
             // BaseForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.creaProduitBox);
+            this.Controls.Add(this.searchTextBox);
+            this.Controls.Add(this.modificationProduitGroupBox);
+            this.Controls.Add(this.creationProduitGroupBox);
             this.Name = "BaseForm";
             this.Text = "BaseForm";
-            this.creaProduitBox.ResumeLayout(false);
-            this.creaProduitBox.PerformLayout();
+            this.creationProduitGroupBox.ResumeLayout(false);
+            this.creationProduitGroupBox.PerformLayout();
+            this.modificationProduitGroupBox.ResumeLayout(false);
+            this.modificationProduitGroupBox.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -204,6 +361,34 @@
         private System.Windows.Forms.TextBox nomProduitTextBox;
         private System.Windows.Forms.TextBox fournisseurTextBox;
         private System.Windows.Forms.TextBox descriptionProduitTextBox;
-
+        private System.Windows.Forms.Label fournisseurCreationLabel;
+        private System.Windows.Forms.GroupBox creationProduitGroupBox;
+        private System.Windows.Forms.TextBox descProduitCreationTextBox;
+        private System.Windows.Forms.Label descProduitCreationLabel;
+        private System.Windows.Forms.TextBox prixProduitCreationTextBox;
+        private System.Windows.Forms.TextBox qtyProduitCreationTextBox;
+        private System.Windows.Forms.TextBox catProduitCreationTextBox;
+        private System.Windows.Forms.TextBox nomProduitCreationTextBox;
+        private System.Windows.Forms.TextBox fournisseurCreationTextBox;
+        private System.Windows.Forms.Label prixProduitCreationLabel;
+        private System.Windows.Forms.Label qtyProduitCreationLabel;
+        private System.Windows.Forms.Label catProduitCreationLabel;
+        private System.Windows.Forms.Label nomProduitCreationLabel;
+        private System.Windows.Forms.GroupBox modificationProduitGroupBox;
+        private System.Windows.Forms.TextBox descProduitModifTextBox;
+        private System.Windows.Forms.Label descProduitModifLabel;
+        private System.Windows.Forms.TextBox qtyProduitModifTextBox;
+        private System.Windows.Forms.TextBox catProduitModifTextBox;
+        private System.Windows.Forms.TextBox nomProduitModifTextBox;
+        private System.Windows.Forms.TextBox fournisseurModifTextBox;
+        private System.Windows.Forms.Label prixProduitModifLabel;
+        private System.Windows.Forms.Label qtyProduitModifLabel;
+        private System.Windows.Forms.Label catProduitModifLabel;
+        private System.Windows.Forms.Label nomProduitModifLabel;
+        private System.Windows.Forms.Label fournisseurModifLabel;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox searchTextBox;
+        private System.Windows.Forms.Button btnCreation;
+        private System.Windows.Forms.Button btnModification;
     }
 }

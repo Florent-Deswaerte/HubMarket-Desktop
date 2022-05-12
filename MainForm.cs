@@ -39,7 +39,7 @@ namespace HubMarket_Desktop
 
         private void Connexion(object sender, EventArgs e)
         {
-            var credentials = new Credentials
+            var credentials = new Credentials()
             {
                 username = usernameTextBox.Text,
                 password = passwordTextBox.Text,
