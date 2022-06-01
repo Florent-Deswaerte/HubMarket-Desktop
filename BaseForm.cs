@@ -28,6 +28,7 @@ namespace HubMarket_Desktop
         {
             try
             {
+                Boolean readyToInsert = false;
                 List<Fournisseur> fournisseurs = new List<Fournisseur>();
                 List<Categorie> categories = new List<Categorie>();
                 Request request = new Request("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/fournisseurs");
@@ -37,7 +38,6 @@ namespace HubMarket_Desktop
                 if(fournisseurObject == null)
                 {
                     MessageBox.Show("Ceci n'est pas un fournisseur valide");
-                    return;
                 }
                 else
                 {
@@ -51,7 +51,6 @@ namespace HubMarket_Desktop
                 if (categorieObject == null)
                 {
                     MessageBox.Show("Ceci n'est pas une catégorie valide");
-                    return;
                 }
                 else
                 {
@@ -71,11 +70,23 @@ namespace HubMarket_Desktop
 
                 try
                 {
-                    request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits");
-                    string jsonProduit = Produit.SerializeProduit(produit);
-                    var jObj = (JObject)JsonConvert.DeserializeObject(jsonProduit);
-                    var query = "?" + String.Join("&", jObj.Children().Cast<JProperty>().Select(jp => jp.Name + "=" + HttpUtility.UrlEncode(jp.Value.ToString())));
-                    string response = await request.PostQuery("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits" + query);
+                    if(categorieObject != null && fournisseurObject != null) readyToInsert = true;
+                    if(readyToInsert == true)
+                    {
+                        request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits");
+                        string jsonProduit = Produit.SerializeProduit(produit);
+                        var jObj = (JObject)JsonConvert.DeserializeObject(jsonProduit);
+                        var query = "?" + String.Join("&", jObj.Children().Cast<JProperty>().Select(jp => jp.Name + "=" + HttpUtility.UrlEncode(jp.Value.ToString())));
+                        string response = await request.PostQuery("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits" + query);
+                        JObject responseObject = JObject.Parse(response);
+                        string responseCode = responseObject["api:responseCode"].ToString();
+                        if (responseCode != "201") MessageBox.Show($"Le serveur a répondu avec le code: {responseCode}\nLe produit n'a pas été inséré!");
+                        else MessageBox.Show("Le produit a bien été inséré!");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Le produit ne peut pas être inséré");
+                    }
                 }
                 catch (Exception ex)
                 {
