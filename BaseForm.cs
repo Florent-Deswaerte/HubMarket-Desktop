@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Web;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
@@ -23,7 +24,7 @@ namespace HubMarket_Desktop
             CenterToScreen();
         }
 
-        private void btnCreation_Click(object sender, EventArgs e)
+        private async void btnCreation_Click(object sender, EventArgs e)
         {
             try
             {
@@ -33,40 +34,53 @@ namespace HubMarket_Desktop
                 string jsonResponse = request.Get();
                 JObject jsonObject = JObject.Parse(jsonResponse);
                 var fournisseurObject = jsonObject.SelectToken($"$.api:members[?(@.libelle == '{fournisseurCreationTextBox.Text}')]");
-                Fournisseur fournisseur = JsonConvert.DeserializeObject<Fournisseur>(fournisseurObject.ToString());
-                fournisseurs.Add(fournisseur);
+                if(fournisseurObject == null)
+                {
+                    MessageBox.Show("Ceci n'est pas un fournisseur valide");
+                    return;
+                }
+                else
+                {
+                    Fournisseur fournisseur = JsonConvert.DeserializeObject<Fournisseur>(fournisseurObject.ToString());
+                    fournisseurs.Add(fournisseur);
+                }
                 request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/categories");
                 jsonResponse = request.Get();
                 jsonObject = JObject.Parse(jsonResponse);
                 var categorieObject = jsonObject.SelectToken($"$.api:members[?(@.nom == '{catProduitCreationTextBox.Text}')]");
-                Categorie categorie = JsonConvert.DeserializeObject<Categorie>(categorieObject.ToString());
-                categories.Add(categorie);
-
-                /*var produit = new Produit()
+                if (categorieObject == null)
                 {
-                    fournisseur = fournisseurs,
+                    MessageBox.Show("Ceci n'est pas une catégorie valide");
+                    return;
+                }
+                else
+                {
+                    Categorie categorie = JsonConvert.DeserializeObject<Categorie>(categorieObject.ToString());
+                    categories.Add(categorie);
+                }
+                var produit = new Produit()
+                {
+                    fournisseur = fournisseurCreationTextBox.Text,
                     nom = nomProduitCreationTextBox.Text,
-                    categorie = categories,
+                    categorie = catProduitCreationTextBox.Text,
                     qty = Int32.Parse(qtyProduitCreationTextBox.Text),
                     description = descProduitCreationTextBox.Text,
                     prix = Decimal.Parse(prixProduitCreationTextBox.Text),
-                };*/
+                    imagePath = "http://s4-8014.nuage-peda.fr/Hubmarket/src/Assets/Images/nouilles.jpg",
+                };
 
-                /* Erreur 500 sur la requête post
                 try
                 {
                     request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits");
                     string jsonProduit = Produit.SerializeProduit(produit);
-                    MessageBox.Show(jsonProduit);
-                    En faite ici la c'est pas bon mais j'ai pas changé, la requête est pas bonne vu que j'envoie le produit comme il est de base alors que
-                    l'on doit juste envoyer les infos en brut
-                    string response = request.Post(jsonProduit, "application/json", "POST");
-                    // MessageBox.Show(response);
+                    var jObj = (JObject)JsonConvert.DeserializeObject(jsonProduit);
+                    var query = "?" + String.Join("&", jObj.Children().Cast<JProperty>().Select(jp => jp.Name + "=" + HttpUtility.UrlEncode(jp.Value.ToString())));
+                    string response = await request.PostQuery("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits" + query);
                 }
                 catch (Exception ex)
                 {
-                    MessageBox.Show(ex.Message);
-                }*/
+                    MessageBox.Show(ex.ToString());
+                }
             }
             catch (Exception ex)
             {

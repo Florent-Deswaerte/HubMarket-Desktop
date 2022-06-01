@@ -1,7 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Net;
+using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace HubMarket_Desktop
 {
@@ -61,6 +64,16 @@ namespace HubMarket_Desktop
             this.responseStream = stream;
             StreamReader reader = new StreamReader(stream);
             return reader.ReadToEnd();
+        }
+
+        public async Task<string> PostQuery(string url)
+        {
+            var values = new Dictionary<string, string> {};
+            var content = new FormUrlEncodedContent(values);
+            HttpClient client = new HttpClient();
+            var response = await client.PostAsync(url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            return responseString;
         }
 
         public string GetUrl()
