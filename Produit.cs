@@ -13,7 +13,7 @@ namespace HubMarket_Desktop
         public Fournisseur[] fournisseurs { get; set;}
         public int qty { get; set; }
         public string description { get; set; }
-        public decimal prix { get; set; }
+        public string prix { get; set; }
         public string imagePath { get; set; }
 
 

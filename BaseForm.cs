@@ -58,7 +58,7 @@ namespace HubMarket_Desktop
                     categorie = catProduitCreationTextBox.Text,
                     qty = Int32.Parse(qtyProduitCreationTextBox.Text),
                     description = descProduitCreationTextBox.Text,
-                    prix = Decimal.Parse(prixProduitCreationTextBox.Text),
+                    prix = prixProduitCreationTextBox.Text,
                     imagePath = "http://s4-8014.nuage-peda.fr/Hubmarket/src/Assets/Images/nouilles.jpg",
                 };
                 try
@@ -116,7 +116,7 @@ namespace HubMarket_Desktop
                 categorie = modifyProductCatTextField.Text,
                 qty = Int32.Parse(modifyProductQtyTextField.Text),
                 description = modifyProductDescTextField.Text,
-                prix = Decimal.Parse(modifyProductPriceTextField.Text),
+                prix = modifyProductPriceTextField.Text,
                 imagePath = "http://s4-8014.nuage-peda.fr/Hubmarket/src/Assets/Images/nouilles.jpg",
             };
             Request request = new Request();
