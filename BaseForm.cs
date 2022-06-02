@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web;
@@ -20,7 +21,20 @@ namespace HubMarket_Desktop
         public BaseForm()
         {
             InitializeComponent();
-
+            this.MaximizeBox = false;
+            Request request = new Request($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits/fournisseur/{Singleton.GetInstance().GetFournisseur().libelle}");
+            string jsonResponse = request.Get();
+            JObject jsonObject = JObject.Parse(jsonResponse);
+            Produit[] produits = jsonObject["api:members"].ToObject<Produit[]>();
+            foreach(Produit produit in produits)
+            {
+                ListViewItem item = new ListViewItem(produit.id.ToString());
+                item.SubItems.Add(produit.nom);
+                item.SubItems.Add(produit.categories[0].nom);
+                item.SubItems.Add(produit.qty.ToString());
+                item.SubItems.Add(produit.prix.ToString());
+                productsListView.Items.Add(item);
+            }
             CenterToScreen();
         }
 
@@ -29,37 +43,17 @@ namespace HubMarket_Desktop
             try
             {
                 Boolean readyToInsert = false;
-                List<Fournisseur> fournisseurs = new List<Fournisseur>();
-                List<Categorie> categories = new List<Categorie>();
-                Request request = new Request("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/fournisseurs");
+                Request request = new Request("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/categories");
                 string jsonResponse = request.Get();
                 JObject jsonObject = JObject.Parse(jsonResponse);
-                var fournisseurObject = jsonObject.SelectToken($"$.api:members[?(@.libelle == '{fournisseurCreationTextBox.Text}')]");
-                if(fournisseurObject == null)
-                {
-                    MessageBox.Show("Ceci n'est pas un fournisseur valide");
-                }
-                else
-                {
-                    Fournisseur fournisseur = JsonConvert.DeserializeObject<Fournisseur>(fournisseurObject.ToString());
-                    fournisseurs.Add(fournisseur);
-                }
-                request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/categories");
-                jsonResponse = request.Get();
-                jsonObject = JObject.Parse(jsonResponse);
                 var categorieObject = jsonObject.SelectToken($"$.api:members[?(@.nom == '{catProduitCreationTextBox.Text}')]");
                 if (categorieObject == null)
                 {
                     MessageBox.Show("Ceci n'est pas une catégorie valide");
                 }
-                else
-                {
-                    Categorie categorie = JsonConvert.DeserializeObject<Categorie>(categorieObject.ToString());
-                    categories.Add(categorie);
-                }
                 var produit = new Produit()
                 {
-                    fournisseur = fournisseurCreationTextBox.Text,
+                    fournisseur = Singleton.GetInstance().GetFournisseur().libelle,
                     nom = nomProduitCreationTextBox.Text,
                     categorie = catProduitCreationTextBox.Text,
                     qty = Int32.Parse(qtyProduitCreationTextBox.Text),
@@ -67,10 +61,9 @@ namespace HubMarket_Desktop
                     prix = Decimal.Parse(prixProduitCreationTextBox.Text),
                     imagePath = "http://s4-8014.nuage-peda.fr/Hubmarket/src/Assets/Images/nouilles.jpg",
                 };
-
                 try
                 {
-                    if(categorieObject != null && fournisseurObject != null) readyToInsert = true;
+                    if(categorieObject != null) readyToInsert = true;
                     if(readyToInsert == true)
                     {
                         request.SetUrl("https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits");
@@ -99,9 +92,79 @@ namespace HubMarket_Desktop
             }
         }
 
-        private void btnModification_Click(object sender, EventArgs e)
+        private void productsListView_Click(object sender, EventArgs e)
         {
-            // Code
+            var firstSelectedItem = productsListView.SelectedItems[0];
+            Request request = new Request($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits/{firstSelectedItem.Text}");
+            string jsonResponse = request.Get();
+            JObject jsonObject = JObject.Parse(jsonResponse);
+            Produit produit = jsonObject["api:members"][0].ToObject<Produit>();
+            modifyProductCatTextField.Text = produit.categories[0].nom;
+            modifyProductDescTextField.Text = produit.description;
+            modifyProductNameTextField.Text = produit.nom;
+            modifyProductQtyTextField.Text = produit.qty.ToString();
+            modifyProductPriceTextField.Text = produit.prix.ToString();
+            produitIdLabel.Text = produit.id.ToString();
+        }
+
+        private async void modifyProductButton_Click(object sender, EventArgs e)
+        {
+            var produit = new Produit()
+            {
+                fournisseur = Singleton.GetInstance().GetFournisseur().libelle,
+                nom = modifyProductNameTextField.Text,
+                categorie = modifyProductCatTextField.Text,
+                qty = Int32.Parse(modifyProductQtyTextField.Text),
+                description = modifyProductDescTextField.Text,
+                prix = Decimal.Parse(modifyProductPriceTextField.Text),
+                imagePath = "http://s4-8014.nuage-peda.fr/Hubmarket/src/Assets/Images/nouilles.jpg",
+            };
+            Request request = new Request();
+            string jsonProduit = Produit.SerializeProduit(produit);
+            var jObj = (JObject)JsonConvert.DeserializeObject(jsonProduit);
+            jObj.Remove("id");
+            jObj.Remove("categories");
+            jObj.Remove("fournisseurs");
+            var query = "?" + String.Join("&", jObj.Children().Cast<JProperty>().Select(jp => jp.Name + "=" + HttpUtility.UrlEncode(jp.Value.ToString())));
+            string response = await request.PatchQuery($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits/{produitIdLabel.Text}" + query);
+            JObject responseObject = JObject.Parse(response);
+            string responseCode = responseObject["api:responseCode"].ToString();
+            this.ReloadListView();
+            MessageBox.Show("Le produit a été modifié!");
+        }
+
+        private void materialRaisedButton1_Click(object sender, EventArgs e)
+        {
+            this.ReloadListView();
+        }
+
+        private void deleteProductButton_Click(object sender, EventArgs e)
+        {
+            if (produitIdLabel.Text != "")
+            {
+                Request request = new Request($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits/{produitIdLabel.Text}");
+                HttpWebResponse response = request.Delete(request.GetUrl());
+                this.ReloadListView();
+                MessageBox.Show("Produit supprimé!");
+            }
+        }
+
+        private void ReloadListView()
+        {
+            Request request = new Request($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/produits/fournisseur/{Singleton.GetInstance().GetFournisseur().libelle}");
+            string jsonResponse = request.Get();
+            JObject jsonObject = JObject.Parse(jsonResponse);
+            Produit[] produits = jsonObject["api:members"].ToObject<Produit[]>();
+            productsListView.Items.Clear();
+            foreach (Produit produit in produits)
+            {
+                ListViewItem item = new ListViewItem(produit.id.ToString());
+                item.SubItems.Add(produit.nom);
+                item.SubItems.Add(produit.categories[0].nom);
+                item.SubItems.Add(produit.qty.ToString());
+                item.SubItems.Add(produit.prix.ToString());
+                productsListView.Items.Add(item);
+            }
         }
     }
 }

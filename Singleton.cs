@@ -9,6 +9,8 @@ namespace HubMarket_Desktop
     public sealed class Singleton
     {
         private User user;
+        private Fournisseur fournisseur;
+
         private Singleton() { }
 
         private static Singleton _instance;
@@ -25,6 +27,17 @@ namespace HubMarket_Desktop
         public User GetUser()
         {
             return this.user;
+        }
+
+        public Fournisseur GetFournisseur()
+        {
+            return this.fournisseur;
+        }
+
+        public Fournisseur SetFournisseur(Fournisseur fournisseur)
+        {
+            this.fournisseur = fournisseur;
+            return this.fournisseur;
         }
 
         public User SetUser(User user)

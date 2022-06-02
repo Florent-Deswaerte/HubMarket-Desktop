@@ -12,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using MaterialSkin;
 using MaterialSkin.Controls;
+using Newtonsoft.Json.Linq;
 
 namespace HubMarket_Desktop
 {
@@ -23,8 +24,8 @@ namespace HubMarket_Desktop
             usernameTextBox.Left = (this.ClientSize.Width - usernameTextBox.Width) / 2;
             passwordTextBox.Left = (this.ClientSize.Width - passwordTextBox.Width) / 2;
             connectButton.Left = (this.ClientSize.Width - connectButton.Width) / 2;
+            this.MaximizeBox = false;
             CenterToScreen();
-            this.Text = "HubMarket";
             MaterialSkinManager materialSkinManager = MaterialSkinManager.Instance;
             materialSkinManager.AddFormToManage(this);
             materialSkinManager.Theme = MaterialSkinManager.Themes.LIGHT;
@@ -55,10 +56,25 @@ namespace HubMarket_Desktop
                 User user = JsonConvert.DeserializeObject<User>(decodedToken);
                 if (user != null)
                 {
-                    Singleton.GetInstance().SetUser(user);
-                    debugLabel.Text = request.GetResponse().StatusCode.ToString();
-                    Form BaseForm = new BaseForm();
-                    BaseForm.ShowDialog();
+                    try
+                    {
+                        request.SetUrl($"https://s4-8014.nuage-peda.fr/Hubmarket/public/api/fournisseurs/email/{usernameTextBox.Text}");
+                        string jsonResponse = request.Get();
+                        JObject jsonObject = JObject.Parse(jsonResponse);
+                        Fournisseur fournisseur = jsonObject["api:members"][0].ToObject<Fournisseur>();
+                        Singleton.GetInstance().SetFournisseur(fournisseur);
+                        Singleton.GetInstance().SetUser(user);
+                        Form BaseForm = new BaseForm();
+                        BaseForm.Location = this.Location;
+                        BaseForm.StartPosition = FormStartPosition.Manual;
+                        BaseForm.FormClosing += delegate { this.Show(); };
+                        BaseForm.Show();
+                        this.Hide();
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Vous devez être un fournisseur afin de pouvoir accéder à cet outil");
+                    }
                 }
             }
             catch (Exception ex)

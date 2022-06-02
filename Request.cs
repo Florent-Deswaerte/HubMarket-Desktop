@@ -33,7 +33,6 @@ namespace HubMarket_Desktop
         {
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(this.GetUrl());
             request.AutomaticDecompression = DecompressionMethods.GZip | DecompressionMethods.Deflate;
-
             HttpWebResponse response = (HttpWebResponse)request.GetResponse();
             this.response = response;
             Stream stream = response.GetResponseStream();
@@ -74,6 +73,24 @@ namespace HubMarket_Desktop
             var response = await client.PostAsync(url, content);
             var responseString = await response.Content.ReadAsStringAsync();
             return responseString;
+        }
+
+        public async Task<string> PatchQuery(string url)
+        {
+            var values = new Dictionary<string, string> { };
+            var content = new FormUrlEncodedContent(values);
+            HttpClient client = new HttpClient();
+            var response = await client.PatchAsync(url, content);
+            var responseString = await response.Content.ReadAsStringAsync();
+            return responseString;
+        }
+
+        public HttpWebResponse Delete(string url)
+        {
+            WebRequest request = WebRequest.Create(this.baseUrl);
+            request.Method = "DELETE";
+            HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+            return response;
         }
 
         public string GetUrl()

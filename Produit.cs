@@ -5,9 +5,12 @@ namespace HubMarket_Desktop
 {
     public class Produit
     {
+        public int? id { get; set; }
         public string fournisseur { get; set; }
         public string nom { get; set; }
         public string categorie { get; set; }
+        public Categorie[] categories { get; set; }
+        public Fournisseur[] fournisseurs { get; set;}
         public int qty { get; set; }
         public string description { get; set; }
         public decimal prix { get; set; }

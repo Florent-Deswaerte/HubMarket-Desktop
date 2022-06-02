@@ -111,7 +111,8 @@
             this.Controls.Add(this.debugLabel);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "MainForm";
-            this.Text = "Form1";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Connexion";
             this.ResumeLayout(false);
             this.PerformLayout();
 
